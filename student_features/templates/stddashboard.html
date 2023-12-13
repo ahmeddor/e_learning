@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+</head>
+<body>
+    {% if courses.exists %}
+    {% for course in courses %} <p>{{course.title}}</p>{% endfor %}
+    {% endif %}
+
+    {% if materials.exists %}
+    {% for mat in materials %} <p>{{mat.title   }}</p>{% endfor %}
+    {% endif %}
+
+    {% if assignments.exists %}
+    {% for assign in assignments %} 
+    <a href="{{assign.pk}}">{{assign.title}}</a> 
+    {% endfor %}
+    {% endif %}
+
+    {% if grades.exists %}
+    {% for grade in grades %} <p>{{grade.grade}}</p> <p>{{grade.feedback}}</p>{% endfor %}
+    {% endif %}
+</body>
+</html>

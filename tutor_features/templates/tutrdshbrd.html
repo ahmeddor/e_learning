@@ -1,0 +1,47 @@
+<!-- mycourses.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tutor dashboard</title>
+</head>
+<body>
+    <p>{{response}}</p>
+    {% if courses.exists %}
+    <h2>My Courses</h2>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.title }} - {{ course.description }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if submissions.exists %}
+    <h2>Submissions</h2>
+    <div>
+        {% for submission in submissions %}
+        <div>
+            <form method="POST" action="{% url 'show_submission' %}" >
+                {% csrf_token %}
+            <p>{{ submission.submission_content }}</p>
+            <p>{{ submission.student }}</p>
+            <p>{{ submission.submission_date }}<p>
+                <div>
+                    
+                    <label for="grade">Grade</label>
+                    <input required type="text" id="grade" name="grade">
+                    <label for="feedback">Feedback</label>
+                    <textarea name="feedback" id="feedback" cols="30" rows="10"></textarea>
+                    <input type="hidden" name="assignment_id" value="{{ submission.assignment_id }}">
+                    <input type="hidden" name="student_id" value="{{ submission.student.pk }}">
+                    <button type="submit">grade</button>
+                </div>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+</body>
+</html>

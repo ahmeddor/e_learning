@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h2>Assignment Detail</h2>
+    <p>{{detail.assign.title}}</p>
+    <p>{{detail.assign.description}}</p>
+    <p>{{detail.assign.due_date}}</p>
+    <p>{{detail.course.title}}</p>
+
+    <form method="POST" action="{%url 'submit_work' %}">
+        {% csrf_token %}
+        <label for="subcontent">Assignment response</label>
+        <textarea name="sub_content" id="subcontent" cols="30" rows="10"></textarea>
+
+        <input type="hidden" name="assignment_id" value="{{ detail.assign.pk }}">
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>

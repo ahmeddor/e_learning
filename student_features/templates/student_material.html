@@ -1,0 +1,20 @@
+<!-- student_material.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Material List</title>
+</head>
+<body>
+
+    <h2>Student Material List</h2>
+
+    <ul>
+        {% for material in materials %}
+            <li>{{ material.title }} - {{ material.content }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
